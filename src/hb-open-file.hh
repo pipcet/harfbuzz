@@ -112,8 +112,9 @@ typedef struct OffsetTable
   const TableRecord& get_table_by_tag (hb_tag_t tag) const
   {
     unsigned int table_index;
-    find_table_index (tag, &table_index);
-    return get_table (table_index);
+    if (find_table_index (tag, &table_index))
+      return get_table (table_index);
+    return Null (TableRecord);
   }
 
   public:
