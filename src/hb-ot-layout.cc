@@ -360,6 +360,8 @@ hb_ot_layout_get_attach_points (hb_face_t      *face,
  * Fetches a list of the caret positions defined for a ligature glyph in the GDEF
  * table of the font. The list returned will begin at the offset provided.
  *
+ * Return value: The total number of ligature carets available for
+ * this glyph of the face.
  **/
 unsigned int
 hb_ot_layout_get_ligature_carets (hb_font_t      *font,
