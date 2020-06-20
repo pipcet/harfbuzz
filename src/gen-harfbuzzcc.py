@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 
-import io, os, re, sys
+"usage: gen-harfbuzzcc.py harfbuzz.cc hb-blob.cc hb-buffer.cc ..."
+
+import os, re, sys
+
+os.chdir (os.path.dirname (__file__))
 
 if len (sys.argv) < 3:
-	sys.exit("usage: gen-harfbuzzcc.py harfbuzz.def hb-blob.cc hb-buffer.cc ...")
+	sys.exit (__doc__)
 
 output_file = sys.argv[1]
 source_paths = sys.argv[2:]

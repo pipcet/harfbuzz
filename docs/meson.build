@@ -8,6 +8,8 @@ if not find_program('gtkdoc-scan', required: get_option('gtk_doc')).found()
   subdir_done()
 endif
 
+conf.set('HAVE_GTK_DOC', 1)
+
 gnome = import('gnome')
 
 docconf = configuration_data()
@@ -39,7 +41,7 @@ html_images = [
 ]
 
 ignore_headers = []
-if have_gobject
+if not have_gobject
   ignore_headers += [
     'hb-gobject.h',
     'hb-gobject-enums.h',
@@ -50,8 +52,8 @@ endif
 
 gnome.gtkdoc('harfbuzz',
   main_sgml: 'harfbuzz-docs.xml',
-  src_dir: [join_paths(meson.current_source_dir(), '..'),
-            join_paths(meson.current_build_dir(), '..'),
+  src_dir: [meson.current_source_dir() / '..',
+            meson.current_build_dir() / '..',
            ],
   scan_args: ['--deprecated-guards=HB_DISABLE_DEPRECATED',
               '--ignore-decorators=HB_EXTERN',
